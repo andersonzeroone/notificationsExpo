@@ -54,9 +54,38 @@ export default function App() {
           await schedulePushNotification();
         }}
       />
+
+      <Button
+        title="Press to sendPushNotification a notification"
+        onPress={async () => {
+          await sendPushNotification(expoPushToken);
+        }}
+      />
     </View>
   );
 }
+
+// Can use this function below, OR use Expo's Push Notification Tool-> https://expo.dev/notifications
+async function sendPushNotification(expoPushToken) {
+  const message = {
+    to: expoPushToken,
+    sound: 'default',
+    title: 'Send push notification',
+    body: 'And here is the body!',
+    data: { someData: 'goes here' },
+  };
+
+  await fetch('https://exp.host/--/api/v2/push/send', {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Accept-encoding': 'gzip, deflate',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(message),
+  });
+}
+
 
 async function schedulePushNotification() {
   await Notifications.scheduleNotificationAsync({
