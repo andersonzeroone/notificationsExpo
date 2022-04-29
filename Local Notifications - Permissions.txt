@@ -1,0 +1,12 @@
+Local Notifications - Permissions
+When using Expo Go, you shouldn't need to ask for any permissions to send or show local notifications (or notifications in general).
+
+This will change as you build your app for production though. Even when using Expo's managed workflow, you will then leave the Expo Go app (as a standalone app will be built by EAS - see section 14).
+
+To ensure that notifications work correctly, you should therefore ask for permission. For Android, no changes are required. For iOS, you can use the getPermissionsAsync() method (https://docs.expo.dev/versions/latest/sdk/notifications/#getpermissionsasync-promisenotificationpermissionsstatus) 
+
+provided by expo-notifications to get the current permission status. You can use requestPermissionsAsync() (https://docs.expo.dev/versions/latest/sdk/notifications/#requestpermissionsasyncrequest-notificationpermissionsrequest-promisenotificationpermissionsstatus) to request permissions.
+
+A full code example can be found here but I will also walk you through the entire permission setup later in this section as well.
+
+https://docs.expo.dev/push-notifications/push-notifications-setup/

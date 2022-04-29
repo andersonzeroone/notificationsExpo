@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, Button } from 'react-native';
 import * as Notifications from 'expo-notifications';
@@ -14,6 +15,30 @@ Notifications.setNotificationHandler({
 });
 
 export default function App() {
+
+  useEffect(() => {
+    const subscription = Notifications.addNotificationReceivedListener((notification) => {
+      console.log('NOTIFICATION RECEIVED');
+      // console.log(notification);
+
+      const userName = notification.request.content.data.userName
+      console.log(userName)
+    });
+
+    const subscription2 = Notifications.addNotificationResponseReceivedListener((response) => {
+      console.log('NOTIFICATION RESPONSE RECEIVED');
+      console.log(response);
+      const userName = response.request.content.data.userName
+      console.log(userName)
+
+    });
+
+    return () => {
+      subscription.remove();
+      subscription2.remove();
+    }
+
+  }, []);
 
   function scheduleNotification() {
     Notifications.scheduleNotificationAsync({
