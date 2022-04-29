@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "notifiction",
-    "slug": "notifiction",
+    "name": "notifications",
+    "slug": "notifications",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -14,12 +14,8 @@
       [
         "expo-notifications",
         {
-          "icon": "./local/assets/notification-icon.png",
+          "icon": "./local/assets/icon.png",
           "color": "#ffffff",
-          "sounds": [
-            "./local/assets/notification-sound.wav",
-            "./local/assets/notification-sound-other.wav"
-          ]
         }
       ]
     ],
